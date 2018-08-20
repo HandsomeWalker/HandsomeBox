@@ -4,7 +4,7 @@
   "description": "Lightweight state manage for web application",
   "main": "index.js",
   "repository": "https://github.com/HandsomeWalker/HandsomeX.git",
-  "author": "handsome_walker <dreamcreativehub@gmail.com>",
+  "author": "HandsomeWalker <dreamcreativehub@gmail.com>",
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --hot --inline --progress --config ./webpack.config.js"
