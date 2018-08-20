@@ -1,0 +1,19 @@
+{
+  "name": "HandsomeX",
+  "version": "1.0.0",
+  "description": "Lightweight state manage for web application",
+  "main": "index.js",
+  "repository": "https://github.com/HandsomeWalker/HandsomeX.git",
+  "author": "handsome_walker <dreamcreativehub@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server --hot --inline --progress --config ./webpack.config.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  }
+}
