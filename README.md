@@ -1,2 +1,2 @@
 # HandsomeX
-Lightweight state manage for web application
+Lightweight store for web application

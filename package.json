@@ -1,9 +1,9 @@
 {
-  "name": "HandsomeX",
+  "name": "handsome_box",
   "version": "1.0.0",
-  "description": "Lightweight state manage for web application",
+  "description": "Lightweight store tool for web application",
   "main": "index.js",
-  "repository": "https://github.com/HandsomeWalker/HandsomeX.git",
+  "repository": "https://github.com/HandsomeWalker/HandsomeBox.git",
   "author": "HandsomeWalker <dreamcreativehub@gmail.com>",
   "license": "MIT",
   "scripts": {
