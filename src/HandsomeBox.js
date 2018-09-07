@@ -1,21 +1,4 @@
-let isObject = function(obj) {
-    return Object.prototype.toString.apply(obj) === '[object Object]';
-}
-let isString = function(str) {
-    return Object.prototype.toString.apply(str) === '[object String]';
-}
-let isDate = function(date) {
-    return date instanceof Date;
-}
-let set_cookie = function(key, value, expire) {
-
-}
-let set_localStorage = function(key, value, expire) {
-
-}
-let set_sessionStorage = function(key, value, expire) {
-
-}
+import {isObject, isString, isDate} from './utils';
 /**
  *
  * @param {string} name
