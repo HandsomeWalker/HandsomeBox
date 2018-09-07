@@ -27,7 +27,7 @@ Walker.prototype = (function() {
          * get data
          * @param {string} key
          */
-        get: function(key) {
+        getItem: function(key) {
             if(_private[this.name] === undefined) {
                 return _private;
             }
@@ -46,7 +46,7 @@ Walker.prototype = (function() {
          * @param {*} value
          * @param {object} options
          */
-        set: function(key, value, options) {
+        setItem: function(key, value, options) {
             _private[this.name] || (_private[this.name] = Object.create(null));
             let opts = {
                 mode: 'scope',
