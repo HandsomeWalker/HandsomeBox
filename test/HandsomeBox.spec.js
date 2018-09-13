@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const utils = require('../src/utils.js');
+const utils = require('../src/methods/utils.js');
 
 describe('工具函数测试', function () {
     it('isObject', function() {
@@ -8,7 +8,7 @@ describe('工具函数测试', function () {
     it('isString', function() {
         expect(utils.isString(2)).to.be.equal(false);
     })
-    it('isDate', function() {
-        expect(utils.isDate(new Date())).to.be.equal(true);
+    it('isNumber', function() {
+        expect(utils.isNumber(-5)).to.be.equal(true);
     })
 })

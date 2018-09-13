@@ -1,4 +1,4 @@
-import {isObject, isString, isDate} from './utils';
+import M from './methods/index';
 /**
  *
  * @param {string} name
@@ -9,9 +9,6 @@ function Walker(name) {
 Walker.prototype = (function() {
     let _private = {};
     return {
-        isObject: isObject,
-        isString: isString,
-        isDate: isDate,
         /**
          * @param {object} instance
          */
@@ -26,35 +23,58 @@ Walker.prototype = (function() {
         /**
          * get data
          * @param {string} key
+         * @param {bool} isGetAll
          */
-        getItem: function(key) {
-            if(_private[this.name] === undefined) {
-                return _private;
+        getItem: function(key, isGetAll) {
+            let res;
+            if(M.isUndefined(_private[this.name])) {
+                return undefined;
             }
-            if(this.isString(key)) {
-                if(_private[this.name][key]) {
-                    return _private[this.name][key]['value'];
+            if(!M.isString(key)) {
+                throw new Error('key must be string type!');
+            }
+            res = _private[this.name][key];
+            if(!M.isUndefined(res)) {
+                if(M.isOverDate(res['expire'])) {
+                    res = undefined;
+                    delete _private[this.name][key];
                 }else {
-                    return _private[this.name][key];
+                    !isGetAll && (res = res['value']);
                 }
             }
-            return _private;
+            return res;
         },
         /**
          * set data
          * @param {string} key
          * @param {*} value
-         * @param {object} options
+         * @param {object} options mode {string}, options {number}
          */
         setItem: function(key, value, options) {
-            _private[this.name] || (_private[this.name] = Object.create(null));
+            !M.isUndefined(_private[this.name]) || (_private[this.name] = Object.create(null));
             let opts = {
                 mode: 'scope',
-                expire: ''
+                expire: 0
             };
-            this.isObject(options) && (Object.assign(opts, options));
+            if(M.isObject(options)) {
+                if(options.expire) {
+                    Object.assign(opts, options);
+                }
+            }
+            Object.assign(opts, options);
             opts.value = value;
             _private[this.name][key] = opts;
+            return this;
+        },
+        /**
+         * delete data
+         * @param {string} key
+         */
+        deleteItem: function(key) {
+            let item = this.getItem(key, true);
+            if(!M.isUndefined(item)) {
+                delete _private[this.name][key];
+            }
             return this;
         },
         clear: function() {
