@@ -57,12 +57,12 @@ Walker.prototype = (function() {
                 expire: 0
             };
             if(M.isObject(options)) {
-                if(options.expire) {
-                    Object.assign(opts, options);
-                }
+                M.checkMode(options.mode);
+                M.checkExpire(options.expire);
+                Object.assign(opts, options);
             }
-            Object.assign(opts, options);
             opts.value = value;
+            opts.expire && (opts.expire = Math.abs(opts.expire));
             _private[this.name][key] = opts;
             return this;
         },

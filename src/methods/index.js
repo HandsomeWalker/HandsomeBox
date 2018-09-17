@@ -1,17 +1,19 @@
-import {
-    isObject, isString, isOverDate, isNumber, isUndefined,
-} from './utils';
-import {
-    set_cookie, set_localStorage, set_sessionStorage
-} from './func';
+import * as U from './utils';
+import * as F from './func';
 
-export default {
-    isObject: isObject,
-    isString: isString,
-    isOverDate: isOverDate,
-    isNumber: isNumber,
-    isUndefined: isUndefined,
-    set_cookie: set_cookie,
-    set_localStorage: set_localStorage,
-    set_sessionStorage: set_sessionStorage
+const M = {
+    // utils
+    isObject: U.isObject,
+    isString: U.isString,
+    isOverDate: U.isOverDate,
+    isNumber: U.isNumber,
+    isUndefined: U.isUndefined,
+    // func
+    checkMode: F.checkMode,
+    checkExpire: F.checkExpire,
+    set_cookie: F.set_cookie,
+    set_localStorage: F.set_localStorage,
+    set_sessionStorage: F.set_sessionStorage,
 }
+Object.freeze(M);
+export default M
