@@ -50,7 +50,8 @@ Walker.prototype = (function() {
          * @param {*} value
          * @param {object} options mode {string}, options {number}
          */
-        setItem: function(key, value, options) {
+        setItem: M.decorate(function() {
+            let key = arguments[0], value = arguments[1], options = arguments[2];
             !M.isUndefined(_private[this.name]) || (_private[this.name] = Object.create(null));
             let opts = {
                 mode: 'scope',
@@ -65,7 +66,7 @@ Walker.prototype = (function() {
             opts.expire && (opts.expire = Math.abs(opts.expire));
             _private[this.name][key] = opts;
             return this;
-        },
+        }, M.checkArgumentsNum),
         /**
          * delete data
          * @param {string} key

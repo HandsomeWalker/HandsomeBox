@@ -11,6 +11,8 @@ const M = {
     // func
     checkMode: F.checkMode,
     checkExpire: F.checkExpire,
+    checkArgumentsNum: F.checkArgumentsNum,
+    decorate: F.decorate,
     set_cookie: F.set_cookie,
     set_localStorage: F.set_localStorage,
     set_sessionStorage: F.set_sessionStorage,

@@ -13,6 +13,21 @@ export const checkExpire = function(expire) {
         }
     }
 }
+export const checkArgumentsNum = function() {
+    let args = arguments;
+    let num = Array.prototype.pop.call(this, arguments);
+    if(args.length !== num) {
+        return false;
+    }else {
+        return true;
+    }
+}
+export const decorate = function(target, decorator) {
+    return function() {
+        decorator(arguments);
+        return target.call(this, arguments);
+    }
+}
 export const set_cookie = function(key, value, expire) {
 
 }
