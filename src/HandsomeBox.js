@@ -1,3 +1,4 @@
+'use strict';
 import M from './methods/index';
 /**
  *
@@ -12,21 +13,24 @@ Walker.prototype = (function() {
         /**
          * @param {object} instance
          */
-        bind: function(instance) {
+        bind: M.decorate(function() {
+            let instance = arguments[0];
             if(this.name in instance) {
                 throw new Error('existing name! please use other name...');
             }else {
                 instance[this.name] = this;
             }
             return this;
-        },
+        }, M.checkArgumentsNum, 1),
         /**
          * get data
          * @param {string} key
          * @param {bool} isGetAll
          */
-        getItem: function(key, isGetAll) {
-            let res;
+        getItem: M.decorate(function() {
+            let key = arguments[0],
+                isGetAll = arguments[1],
+                res;
             if(M.isUndefined(_private[this.name])) {
                 return undefined;
             }
@@ -43,7 +47,7 @@ Walker.prototype = (function() {
                 }
             }
             return res;
-        },
+        }, M.checkArgumentsNum, 1),
         /**
          * set data
          * @param {string} key
@@ -51,7 +55,9 @@ Walker.prototype = (function() {
          * @param {object} options mode {string}, options {number}
          */
         setItem: M.decorate(function() {
-            let key = arguments[0], value = arguments[1], options = arguments[2];
+            let key = arguments[0],
+                value = arguments[1],
+                options = arguments[2];
             !M.isUndefined(_private[this.name]) || (_private[this.name] = Object.create(null));
             let opts = {
                 mode: 'scope',
@@ -66,18 +72,19 @@ Walker.prototype = (function() {
             opts.expire && (opts.expire = Math.abs(opts.expire));
             _private[this.name][key] = opts;
             return this;
-        }, M.checkArgumentsNum),
+        }, M.checkArgumentsNum, 2),
         /**
          * delete data
          * @param {string} key
          */
-        deleteItem: function(key) {
-            let item = this.getItem(key, true);
+        deleteItem: M.decorate(function() {
+            let item = this.getItem(key, true),
+            key = arguments[0];
             if(!M.isUndefined(item)) {
                 delete _private[this.name][key];
             }
             return this;
-        },
+        }, M.checkArgumentsNum, 1),
         clear: function() {
             _private[this.name] = Object.create(null);
             return this;
