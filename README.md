@@ -1,2 +1,2 @@
 # HandsomeBox
-Lightweight store for web application
+Lightweight data store for web application
