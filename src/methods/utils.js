@@ -16,7 +16,7 @@ export const isOverDate = function(ms) {
         if(ms === 0) {
             return false;
         }
-        if(Date.now() - ms > 0) {
+        if(Date.now() - Math.abs(ms) > 0) {
             return true;
         }else {
             return false;

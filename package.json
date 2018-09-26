@@ -7,11 +7,13 @@
   "author": "HandsomeWalker <dreamcreativehub@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --hot --inline --progress --config ./webpack.config.js"
+    "dev": "webpack-dev-server --hot --inline --progress --config ./webpack.config.js",
+    "test": "mocha --require babel-register"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
     "webpack": "^4.16.5",

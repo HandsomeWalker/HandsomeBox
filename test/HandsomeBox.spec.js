@@ -11,4 +11,10 @@ describe('工具函数测试', function () {
     it('isNumber', function() {
         expect(utils.isNumber(-5)).to.be.equal(true);
     })
+    it('isUndefined', function() {
+        expect(utils.isUndefined(null)).to.be.equal(false);
+    })
+    it('isOverDate', function() {
+        expect(utils.isOverDate(Date.now() + 1111111)).to.be.equal(false);
+    })
 })
