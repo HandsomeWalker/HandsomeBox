@@ -52,7 +52,7 @@ Walker.prototype = (function() {
          * set data
          * @param {string} key
          * @param {*} value
-         * @param {object} options mode {string}, options {number}
+         * @param {object} options mode {string}, expire {number}
          */
         setItem: M.decorate(function() {
             let key = arguments[0],

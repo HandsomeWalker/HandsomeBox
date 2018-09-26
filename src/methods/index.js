@@ -14,8 +14,10 @@ const M = {
     checkMode: F.checkMode,
     checkExpire: F.checkExpire,
     set_cookie: F.set_cookie,
-    set_localStorage: F.set_localStorage,
-    set_sessionStorage: F.set_sessionStorage,
+    set_localstorage: F.set_localstorage,
+    set_sessionstorage: F.set_sessionstorage,
+    set_indexeddb: F.set_indexeddb,
+    set_websql: F.set_websql
 }
 Object.freeze(M);
 export default M

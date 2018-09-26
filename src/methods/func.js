@@ -14,12 +14,18 @@ export const checkExpire = function(expire) {
         }
     }
 }
-export const set_cookie = function(key, value, expire) {
+export const set_cookie = function(key, value, options) {
 
 }
-export const set_localStorage = function(key, value, expire) {
+export const set_localstorage = function(key, value, options) {
 
 }
-export const set_sessionStorage = function(key, value, expire) {
+export const set_sessionstorage = function(key, value, options) {
+
+}
+export const set_indexeddb = function(key, value, options) {
+
+}
+export const set_websql = function(key, value, options) {
 
 }
