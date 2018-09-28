@@ -17,4 +17,7 @@ describe('工具函数测试', function () {
     it('isOverDate', function() {
         expect(utils.isOverDate(Date.now() + 1111111)).to.be.equal(false);
     })
+    it('checkArgumentsNum', function() {
+        expect(utils.checkArgumentsNum(1, 1, 1, 2)).to.be.equal(true);
+    })
 })
