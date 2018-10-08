@@ -42,12 +42,36 @@ export const delete_cookie = function(key) {
 export const set_localstorage = function(key, value, options) {
 
 }
+export const get_localstorage = function(key) {
+
+}
+export const delete_localstorage = function(key) {
+
+}
 export const set_sessionstorage = function(key, value, options) {
+
+}
+export const get_sessionstorage = function(key) {
+
+}
+export const delete_sessionstorage = function(key) {
 
 }
 export const set_indexeddb = function(key, value, options) {
 
 }
+export const get_indexeddb = function(key) {
+
+}
+export const delete_indexeddb = function(key) {
+
+}
 export const set_websql = function(key, value, options) {
+
+}
+export const get_websql = function(key) {
+
+}
+export const delete_websql = function(key) {
 
 }
