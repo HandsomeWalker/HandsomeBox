@@ -37,12 +37,18 @@ Walker.prototype = (function() {
             if(!M.isString(key)) {
                 throw new Error('key must be string type!');
             }
-            res = _private[this.name][key];
+            res = M.simpleDeepCopy(_private[this.name][key]);
             if(!M.isUndefined(res)) {
                 if(M.isOverDate(res['expire'])) {
                     res = undefined;
                     delete _private[this.name][key];
+                    if(res.mode !== 'scope') {
+                        M[`delete_${res.mode}`](key);
+                    }
                 }else {
+                    if(res.mode !== 'scope') {
+                        res.value = M[`get_${res.mode}`](key);
+                    }
                     !isGetAll && (res = res['value']);
                 }
             }
@@ -68,8 +74,13 @@ Walker.prototype = (function() {
                 M.checkExpire(options.expire);
                 Object.assign(opts, options);
             }
-            opts.value = value;
+            opts.mode = opts.mode.toLowerCase();
             opts.expire && (opts.expire = Math.abs(opts.expire));
+            if(opts.mode === 'scope') {
+                opts.value = value;
+            }else {
+                M[`set_${opts.mode}`] && M[`set_${opts.mode}`](key, value, opts);
+            }
             _private[this.name][key] = opts;
             return this;
         }, M.checkArgumentsNum, 2),
@@ -78,9 +89,12 @@ Walker.prototype = (function() {
          * @param {string} key
          */
         deleteItem: M.decorate(function() {
-            let item = this.getItem(key, true),
-            key = arguments[0];
+            let key = arguments[0],
+            item = this.getItem(key, true);
             if(!M.isUndefined(item)) {
+                if(_private[this.name][key]['mode'] !== 'scope') {
+                    M[`delete_${_private[this.name][key]['mode']}`](key);
+                }
                 delete _private[this.name][key];
             }
             return this;

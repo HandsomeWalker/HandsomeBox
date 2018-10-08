@@ -2,6 +2,9 @@
 export const isObject = function(obj) {
     return Object.prototype.toString.apply(obj) === '[object Object]';
 }
+export const isArray = function(array) {
+    return Object.prototype.toString.apply(array) === '[object Array]';
+}
 export const isString = function(str) {
     return Object.prototype.toString.apply(str) === '[object String]';
 }
@@ -10,6 +13,13 @@ export const isNumber = function(num) {
 }
 export const isUndefined = function(foo) {
     return typeof foo === 'undefined';
+}
+export const simpleDeepCopy = function(obj) {
+    if(isObject(obj) || isArray(obj)) {
+        return JSON.parse(JSON.stringify(obj));
+    }else {
+        return obj;
+    }
 }
 export const isOverDate = function(ms) {
     if(isNumber(ms)) {
