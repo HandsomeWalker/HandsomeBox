@@ -40,11 +40,11 @@ Walker.prototype = (function() {
             res = M.simpleDeepCopy(_private[this.name][key]);
             if(!M.isUndefined(res)) {
                 if(M.isOverDate(res['expire'])) {
-                    res = undefined;
-                    delete _private[this.name][key];
                     if(res.mode !== 'scope') {
                         M[`delete_${res.mode}`](key);
                     }
+                    res = undefined;
+                    delete _private[this.name][key];
                 }else {
                     if(res.mode !== 'scope') {
                         res.value = M[`get_${res.mode}`](key);
@@ -88,7 +88,7 @@ Walker.prototype = (function() {
          * delete data
          * @param {string} key
          */
-        deleteItem: M.decorate(function() {
+        removeItem: M.decorate(function() {
             let key = arguments[0],
             item = this.getItem(key, true);
             if(!M.isUndefined(item)) {
@@ -99,8 +99,26 @@ Walker.prototype = (function() {
             }
             return this;
         }, M.checkArgumentsNum, 1),
+        /**
+         * clear all data
+         */
         clear: function() {
+            for (let key in _private[this.name]) {
+                let item = _private[this.name][key];
+                if(item.mode !== 'scope') {
+                    M[`delete_${item.mode}`](key);
+                }
+            }
             _private[this.name] = Object.create(null);
+            return this;
+        },
+        /**
+         * list all data
+         */
+        list: function() {
+            for (let key in _private[this.name]) {
+                console.log(key);
+            }
             return this;
         },
     };
