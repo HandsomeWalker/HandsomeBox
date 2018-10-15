@@ -116,10 +116,11 @@ Walker.prototype = (function() {
          * list all data
          */
         list: function() {
+            let res = [];
             for (let key in _private[this.name]) {
-                console.log(key);
+                res.push(key);
             }
-            return this;
+            return res;
         },
     };
 }());
