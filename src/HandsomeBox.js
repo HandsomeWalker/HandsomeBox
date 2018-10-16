@@ -16,7 +16,7 @@ Walker.prototype = (function() {
         bind: M.decorate(function() {
             let instance = arguments[0];
             if(this.name in instance) {
-                throw new Error('existing name! please use other name...');
+                M.handsomeError('existing name! please use other name...');
             }else {
                 instance[this.name] = this;
             }
@@ -35,7 +35,7 @@ Walker.prototype = (function() {
                 return undefined;
             }
             if(!M.isString(key)) {
-                throw new Error('key must be string type!');
+                M.handsomeError('when getting item, key must be string type!');
             }
             res = M.simpleDeepCopy(_private[this.name][key]);
             if(!M.isUndefined(res)) {
@@ -79,7 +79,10 @@ Walker.prototype = (function() {
             if(opts.mode === 'scope') {
                 opts.value = value;
             }else {
-                M[`set_${opts.mode}`] && M[`set_${opts.mode}`](key, value, opts);
+                if(M.isUndefined(M[`set_${opts.mode}`])) {
+                    M.handsomeError(`"${opts.mode}" this mode is not exist, plz refer api config`);
+                }
+                M[`set_${opts.mode}`](key, value, opts);
             }
             _private[this.name][key] = opts;
             return this;
@@ -113,7 +116,8 @@ Walker.prototype = (function() {
             return this;
         },
         /**
-         * list all data
+         * list all data key
+         * @returns {array} all data key array
          */
         list: function() {
             let res = [];

@@ -1,4 +1,7 @@
 'use strict';
+export const handsomeError = function(msg) {
+    throw new Error(`HandsomeBox Error\n${msg}`);
+}
 export const isObject = function(obj) {
     return Object.prototype.toString.apply(obj) === '[object Object]';
 }
@@ -39,7 +42,7 @@ export const checkArgumentsNum = function() {
     let args = arguments,
         num = Array.prototype.pop.apply(arguments);
     if(args.length < num) {
-        throw new Error('params num is not enough');
+        handsomeError('params num is not enough');
     }else {
         return true;
     }

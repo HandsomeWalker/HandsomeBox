@@ -3,6 +3,7 @@ import * as F from './func';
 
 const M = {
     // utils
+    handsomeError: U.handsomeError,
     isObject: U.isObject,
     isArray: U.isArray,
     isString: U.isString,
