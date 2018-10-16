@@ -80,7 +80,7 @@ Walker.prototype = (function() {
                 opts.value = value;
             }else {
                 if(M.isUndefined(M[`set_${opts.mode}`])) {
-                    M.handsomeError(`"${opts.mode}" this mode is not exist, plz refer api config`);
+                    M.handsomeError(`"${opts.mode}" this mode is not exist, plz follow the API Reference`);
                 }
                 M[`set_${opts.mode}`](key, value, opts);
             }

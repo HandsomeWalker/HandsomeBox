@@ -40,13 +40,16 @@ export const delete_cookie = function(key) {
     set_cookie(key, '', {expire: -1});
 }
 export const set_localstorage = function(key, value, options) {
-
+    if(U.isObject(value) || U.isArray(value)) {
+        var stringify = JSON.stringify(value);
+    }
+    localStorage.setItem(key, stringify || value);
 }
 export const get_localstorage = function(key) {
-
+    return localStorage.getItem(key);
 }
 export const delete_localstorage = function(key) {
-
+    localStorage.removeItem(key);
 }
 export const set_sessionstorage = function(key, value, options) {
 
