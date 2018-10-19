@@ -1,5 +1,7 @@
 'use strict';
 import * as U from './utils';
+const s = Symbol('sessionStorage');
+const o = {[s]: true};
 export const checkMode = function(mode) {
     if(!U.isUndefined(mode)) {
         if(!U.isString(mode)) {
@@ -43,22 +45,28 @@ export const set_localstorage = function(key, value, options) {
     if(U.isObject(value) || U.isArray(value)) {
         var stringify = JSON.stringify(value);
     }
+    options[s] ?
+    sessionStorage.setItem(key, stringify || value) :
     localStorage.setItem(key, stringify || value);
 }
-export const get_localstorage = function(key) {
-    return localStorage.getItem(key);
+export const get_localstorage = function(key, options) {
+    return options[s] ?
+            sessionStorage.getItem(key) :
+            localStorage.getItem(key);
 }
-export const delete_localstorage = function(key) {
+export const delete_localstorage = function(key, options) {
+    options[s] ?
+    sessionStorage.removeItem(key) :
     localStorage.removeItem(key);
 }
 export const set_sessionstorage = function(key, value, options) {
-
+    set_localstorage(key, value, o);
 }
 export const get_sessionstorage = function(key) {
-
+    return get_localstorage(key, o);
 }
 export const delete_sessionstorage = function(key) {
-
+    delete_localstorage(key, o);
 }
 export const set_indexeddb = function(key, value, options) {
 
