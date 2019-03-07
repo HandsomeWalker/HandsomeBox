@@ -10,6 +10,7 @@ const M = {
     isOverDate: U.isOverDate,
     isNumber: U.isNumber,
     isUndefined: U.isUndefined,
+    isJson: U.isJson,
     simpleDeepCopy: U.simpleDeepCopy,
     checkArgumentsNum: U.checkArgumentsNum,
     decorate: U.decorate,

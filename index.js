@@ -1,10 +1,13 @@
 import Box from './src/HandsomeBox';
 var t1 = new Box('t1');
 var t2 = new Box('t2');
-t1.bind(self).setItem('name', ['jack', 'lilith'], {mode: 'sessionStorage', expire: -(Date.now() + 2000)}).setItem('money', 998);
-t2.bind(self).setItem('age', 20);
-// t1.clear();
+var obj = {};
+t1.bind(window).setItem('name', {names: ['jack', 'lilith'], data: {age: 20, money: '10k'}}, {mode: 'sessionStorage', expire: -(Date.now() + 2000)}).setItem('money', 998);
+t2.bind(obj).setItem('age', 20).setItem('aaa', 'aaa').removeItem('aaa');
 console.log('t1.name', t1.getItem('name'));
-console.log('t1.money', t1.getItem('money'));
+console.log('t1.money', t1.getItem('money', true));
 console.log('t2.age', t2.getItem('age'));
-console.log(t1.list());
+console.log(t1.list(), t2.list());
+t2.clear();
+console.log(t2.list());
+console.log(obj);

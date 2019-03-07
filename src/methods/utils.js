@@ -17,6 +17,15 @@ export const isNumber = function(num) {
 export const isUndefined = function(foo) {
     return typeof foo === 'undefined';
 }
+export const isJson = function(json) {
+    let res;
+    try {
+        res = JSON.parse(json);
+    } catch(e) {
+        res = json;
+    }
+    return res;
+}
 export const simpleDeepCopy = function(obj) {
     if(isObject(obj) || isArray(obj)) {
         return JSON.parse(JSON.stringify(obj));

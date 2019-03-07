@@ -33,7 +33,7 @@ export const get_cookie = function(key) {
     for(var i=0; i < ca.length; i++) {
         var c = ca[i].trim();
         if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
+            return U.isJson(c.substring(name.length, c.length));
         };
     }
     return "";
@@ -50,14 +50,20 @@ export const set_localstorage = function(key, value, options) {
     localStorage.setItem(key, stringify || value);
 }
 export const get_localstorage = function(key, options) {
-    return options[s] ?
-            sessionStorage.getItem(key) :
-            localStorage.getItem(key);
+    let res;
+    if(!options) {
+        res = localStorage.getItem(key);
+    }else  {
+        res = sessionStorage.getItem(key);
+    }
+    return U.isJson(res);
 }
 export const delete_localstorage = function(key, options) {
-    options[s] ?
-    sessionStorage.removeItem(key) :
-    localStorage.removeItem(key);
+    if(!options) {
+        localStorage.removeItem(key);
+    }else {
+        sessionStorage.removeItem(key);
+    }
 }
 export const set_sessionstorage = function(key, value, options) {
     set_localstorage(key, value, o);
