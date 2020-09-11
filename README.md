@@ -41,6 +41,3 @@ params: (key: String)
 clear all saved data
 ## list
 list all key in one instance
-
-# TODO
-indexDB and webSQL support
